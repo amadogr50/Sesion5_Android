@@ -1,0 +1,128 @@
+package com.marito.sesion5;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+  
+  Button button_clear;
+  Spinner scholarship;
+  TextView name;
+  TextView phone;
+  RadioGroup gender;
+  RadioButton genderSelected;
+  AutoCompleteTextView favBook;
+  CheckBox doSports;
+  ClearDialogFragment clearDialogFragment = new ClearDialogFragment();
+  
+  
+  @Override
+  protected void onCreate (Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    
+    name = findViewById(R.id.name);
+    phone = findViewById(R.id.phone);
+  
+    button_clear = findViewById(R.id.button_clear);
+    
+    gender = findViewById(R.id.gender);
+    
+    favBook = findViewById(R.id.fav_book);
+    
+    ArrayAdapter<String> favBooksAdapter = new ArrayAdapter<>(this,
+            android.R.layout.simple_list_item_1,
+            getResources().getStringArray(R.array.fav_books));
+    
+    favBook.setAdapter(favBooksAdapter);
+  
+    scholarship = findViewById(R.id.scholarship);
+  
+    ArrayAdapter<String> scholarshipAdapter = new ArrayAdapter<>(this,
+            android.R.layout.simple_spinner_item,
+            getResources().getStringArray(R.array.scholarship));
+    
+    scholarship.setAdapter(scholarshipAdapter);
+    
+    doSports = findViewById(R.id.do_sports);
+  
+    button_clear.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick (View v) {
+        clearDialogFragment.show(getSupportFragmentManager(), "Clear");
+      }
+    });
+    
+  }
+  
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.activity_main, menu);
+    return true;
+  }
+  
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    save();
+    return true;
+  }
+  
+  public void save(){
+    
+    boolean nameExists = false,
+            phoneExists = false,
+            genderIsSelected = false;
+    
+    if (name.getText().toString().isEmpty()) {
+      name.setError(getString(R.string.error_no_name));
+    } else {
+      nameExists = true;
+    }
+    
+    if (phone.getText().toString().isEmpty()) {
+      phone.setError(getString(R.string.error_no_phone));
+    } else {
+      phoneExists = true;
+    }
+    
+    if (genderSelected == null) {
+      Toast.makeText(MainActivity.this,
+              getString(R.string.select_gender),
+              Toast.LENGTH_SHORT).show();
+    } else {
+      genderIsSelected = true;
+    }
+    
+    if (nameExists && phoneExists && genderIsSelected) {
+      Student student = new Student(
+              name.getText().toString(),
+              phone.getText().toString(),
+              scholarship.getSelectedItem().toString(),
+              genderSelected.getText().toString(),
+              favBook.getText().toString(),
+              doSports.isChecked(),
+              this
+      );
+  
+      Toast.makeText(MainActivity.this, student.toString(), Toast.LENGTH_LONG).show();
+    }
+  }
+  
+  public void onGenderButtonCliked (View v) {
+    genderSelected = findViewById(gender.getCheckedRadioButtonId());
+  }
+}

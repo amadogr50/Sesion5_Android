@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Sesion5</string>
+    <string-array name="scholarship">
+        <item>High school</item>
+        <item>Technical</item>
+        <item>Degree</item>
+        <item>Mastery</item>
+        <item>Doctorate</item>
+    </string-array>
+
+    <string-array name="fav_books">
+        <item>1984</item>
+        <item>Biblia</item>
+        <item>El principito</item>
+        <item>Los juegos del hambre</item>
+        <item>El hombre más rico de Babilonia</item>
+    </string-array>
+
+    <string name="hint_insert_name">Insert your name</string>
+    <string name="hint_insert_phone">Insert your phone</string>
+    <string name="filed_name">Name</string>
+    <string name="field_phone">Phone</string>
+    <string name="dialog_clear">Want to clear content?</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="field_scholarship">Scholarship</string>
+    <string name="gender">Gender</string>
+    <string name="fav_books">Favorites books</string>
+    <string name="fav_book">Favorite book</string>
+    <string name="do_sports">Do sports</string>
+    <string name="hint_insert_fav_book">Insert you favorite book</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="error_no_name">You must insert a name</string>
+    <string name="error_no_phone">You must insert a phone</string>
+    <string name="select_gender">Please select a gender</string>
+    <string name="personal_info">Personal Info</string>
+</resources>
