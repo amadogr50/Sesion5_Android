@@ -1,5 +1,7 @@
 package com.marito.sesion5;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
   RadioButton genderSelected;
   AutoCompleteTextView favBook;
   CheckBox doSports;
-  ClearDialogFragment clearDialogFragment = new ClearDialogFragment();
+  AlertDialog.Builder clearDialog;
   
   
   @Override
@@ -58,11 +60,31 @@ public class MainActivity extends AppCompatActivity {
     scholarship.setAdapter(scholarshipAdapter);
     
     doSports = findViewById(R.id.do_sports);
+
+    clearDialog = new AlertDialog.Builder(this);
+
+    clearDialog.setPositiveButton(R.string.clear, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        clear();
+      }
+    });
+
+    clearDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int id) {
+        // User cancelled the dialog
+      }
+    });
+
+    clearDialog.setMessage(R.string.dialog_clear)
+            .setTitle(R.string.clear);
+
+    final AlertDialog dialog = clearDialog.create();
   
     button_clear.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick (View v) {
-        clearDialogFragment.show(getSupportFragmentManager(), "Clear");
+        dialog.show();
       }
     });
     
@@ -121,8 +143,16 @@ public class MainActivity extends AppCompatActivity {
       Toast.makeText(MainActivity.this, student.toString(), Toast.LENGTH_LONG).show();
     }
   }
-  
+
+  public void clear() {
+    name.setText("");
+    phone.setText("");
+    favBook.setText("");
+    gender.clearCheck();
+  }
+
   public void onGenderButtonCliked (View v) {
     genderSelected = findViewById(gender.getCheckedRadioButtonId());
   }
+
 }
