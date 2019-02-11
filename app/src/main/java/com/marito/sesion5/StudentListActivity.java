@@ -11,9 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class StudentListActivity extends AppCompatActivity {
+  
+  FirebaseDatabase fb;
   
   ListView studentList;
   FloatingActionButton addButton;
@@ -23,6 +27,7 @@ public class StudentListActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_student_list);
   
+    fb = FirebaseDatabase.getInstance();
     
     studentList = findViewById(R.id.student_list);
     addButton = findViewById(R.id.addStudent);
