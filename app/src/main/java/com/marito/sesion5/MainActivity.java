@@ -1,9 +1,11 @@
 package com.marito.sesion5;
 
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.firestore.DocumentReference;
 
 public class MainActivity extends AppCompatActivity {
   
@@ -139,6 +144,15 @@ public class MainActivity extends AppCompatActivity {
               doSports.isChecked(),
               this
       );
+      
+      DocumentReference docRef = StudentListActivity.fb.collection("students").document();
+      
+      docRef.set(student).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure (@NonNull Exception e) {
+          Log.w("firebase", "Error uploading data: " + e);
+        }
+      });
   
       Toast.makeText(MainActivity.this, student.toString(), Toast.LENGTH_LONG).show();
     }
