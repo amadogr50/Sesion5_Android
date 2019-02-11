@@ -42,4 +42,52 @@ public class Student {
   private String findString(int resource){
     return context.getResources().getString(resource);
   }
+  
+  public String getName () {
+    return name;
+  }
+  
+  public void setName (String name) {
+    this.name = name;
+  }
+  
+  public String getPhone () {
+    return phone;
+  }
+  
+  public void setPhone (String phone) {
+    this.phone = phone;
+  }
+  
+  public String getScholarship () {
+    return scholarship;
+  }
+  
+  public void setScholarship (String scholarship) {
+    this.scholarship = scholarship;
+  }
+  
+  public String getGender () {
+    return gender;
+  }
+  
+  public void setGender (String gender) {
+    this.gender = gender;
+  }
+  
+  public String getBook () {
+    return book;
+  }
+  
+  public void setBook (String book) {
+    this.book = book;
+  }
+  
+  public Boolean getDoSports () {
+    return doSports;
+  }
+  
+  public void setDoSports (Boolean doSports) {
+    this.doSports = doSports;
+  }
 }
