@@ -1,10 +1,10 @@
-package com.marito.sesion5;
+package com.marito.sesion5.models;
 
 import android.content.Context;
 
+import com.marito.sesion5.R;
+
 public class Student {
-  private Context context;
-  
   private String name;
   private String phone;
   private String scholarship;
@@ -12,34 +12,33 @@ public class Student {
   private String book;
   private Boolean doSports;
   
-  public Student (String name, String phone, String scholarship, String gender, String book, Boolean doSports, Context context) {
+  public Student (String name, String phone, String scholarship, String gender, String book, Boolean doSports) {
     this.name = name;
     this.phone = phone;
     this.scholarship = scholarship;
     this.gender = gender;
     this.book = book;
     this.doSports = doSports;
-    this.context = context;
   }
-  
-  @Override
-  public String toString () {
+
+  public String toString (Context context) {
+    
     return (this.book.isEmpty()) ?
-            (findString(R.string.filed_name) + ": " + this.name + "\n" +
-            findString(R.string.field_phone) + ": " + this.phone + "\n" +
-            findString(R.string.field_scholarship) + ": " + this.scholarship + "\n" +
-            findString(R.string.gender) + ": " + this.gender + "\n" +
-            findString(R.string.do_sports) + ": " + this.doSports + "\n"
-      ) : (findString(R.string.filed_name) + ": " + this.name + "\n" +
-            findString(R.string.field_phone) + ": " + this.phone + "\n" +
-            findString(R.string.field_scholarship) + ": " + this.scholarship + "\n" +
-            findString(R.string.gender) + ": " + this.gender + "\n" +
-            findString(R.string.fav_book) + ": " + this.book + "\n" +
-            findString(R.string.do_sports) + ": " + this.doSports + "\n"
+            (findString(context, R.string.filed_name) + ": " + this.name + "\n" +
+            findString(context, R.string.field_phone) + ": " + this.phone + "\n" +
+            findString(context, R.string.field_scholarship) + ": " + this.scholarship + "\n" +
+            findString(context, R.string.gender) + ": " + this.gender + "\n" +
+            findString(context, R.string.do_sports) + ": " + this.doSports + "\n"
+      ) : (findString(context, R.string.filed_name) + ": " + this.name + "\n" +
+            findString(context, R.string.field_phone) + ": " + this.phone + "\n" +
+            findString(context, R.string.field_scholarship) + ": " + this.scholarship + "\n" +
+            findString(context, R.string.gender) + ": " + this.gender + "\n" +
+            findString(context, R.string.fav_book) + ": " + this.book + "\n" +
+            findString(context, R.string.do_sports) + ": " + this.doSports + "\n"
       );
   }
   
-  private String findString(int resource){
+  private String findString(Context context, int resource){
     return context.getResources().getString(resource);
   }
   
