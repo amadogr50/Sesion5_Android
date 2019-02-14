@@ -22,8 +22,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.marito.sesion5.models.Student;
 
-public class MainActivity extends AppCompatActivity {
+public class AddStudentActivity extends AppCompatActivity {
   
   Button button_clear;
   Spinner scholarship;
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     if (genderSelected == null) {
-      Toast.makeText(MainActivity.this,
+      Toast.makeText(AddStudentActivity.this,
               getString(R.string.select_gender),
               Toast.LENGTH_SHORT).show();
     } else {
@@ -141,8 +142,7 @@ public class MainActivity extends AppCompatActivity {
               scholarship.getSelectedItem().toString(),
               genderSelected.getText().toString(),
               favBook.getText().toString(),
-              doSports.isChecked(),
-              this
+              doSports.isChecked()
       );
       
       DocumentReference docRef = StudentListActivity.fb.collection("students").document();
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         }
       });
   
-      Toast.makeText(MainActivity.this, student.toString(), Toast.LENGTH_LONG).show();
+      Toast.makeText(AddStudentActivity.this, student.toString(), Toast.LENGTH_LONG).show();
     }
   }
 
