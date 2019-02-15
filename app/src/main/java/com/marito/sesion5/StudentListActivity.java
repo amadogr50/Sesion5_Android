@@ -1,8 +1,8 @@
 package com.marito.sesion5;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class StudentListActivity extends AppCompatActivity {
   
-  public  static FirebaseFirestore fb;
+  public static FirebaseFirestore fb;
   FloatingActionButton addButton;
   
   @Override
