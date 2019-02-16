@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "865049647814",
+    "firebase_url": "https://studentapp-c181d.firebaseio.com",
+    "project_id": "studentapp-c181d",
+    "storage_bucket": "studentapp-c181d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865049647814:android:922ad104f16926bc",
+        "android_client_info": {
+          "package_name": "com.marito.sesion5"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865049647814-ua97ua5tv75s4a7vcfd9u2kgubprphd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgKjTeclrMOmVRlEwsXTd4ckFIVHw7-Yw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

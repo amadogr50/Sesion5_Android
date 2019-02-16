@@ -1,9 +1,11 @@
 package com.marito.sesion5;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.marito.sesion5.models.Student;
+
+public class AddStudentActivity extends AppCompatActivity {
   
   Button button_clear;
   Spinner scholarship;
@@ -34,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate (Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_add_new_student);
     
     name = findViewById(R.id.name);
     phone = findViewById(R.id.phone);
@@ -122,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     if (genderSelected == null) {
-      Toast.makeText(MainActivity.this,
+      Toast.makeText(AddStudentActivity.this,
               getString(R.string.select_gender),
               Toast.LENGTH_SHORT).show();
     } else {
@@ -136,11 +142,19 @@ public class MainActivity extends AppCompatActivity {
               scholarship.getSelectedItem().toString(),
               genderSelected.getText().toString(),
               favBook.getText().toString(),
-              doSports.isChecked(),
-              this
+              doSports.isChecked()
       );
+      
+      DocumentReference docRef = StudentListActivity.fb.collection("students").document();
+      
+      docRef.set(student).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure (@NonNull Exception e) {
+          Log.w("firebase", "Error uploading data: " + e);
+        }
+      });
   
-      Toast.makeText(MainActivity.this, student.toString(), Toast.LENGTH_LONG).show();
+      Toast.makeText(AddStudentActivity.this, student.toString(), Toast.LENGTH_LONG).show();
     }
   }
 
